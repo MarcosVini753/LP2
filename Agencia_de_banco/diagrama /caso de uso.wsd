@@ -1,0 +1,17 @@
+@startuml
+
+left to right direction
+
+:cliente: -- (abrir conta)
+:cliente: -- (encerrar conta)
+:cliente: -- (sacar)
+:cliente: -- (depositar)
+
+(abrir conta) -- :funcionário:
+(encerrar conta) -- :funcionário:
+(depositar) ..> (encerrar conta) : <<extend>>
+(sacar) ..> (registar movimento) : <<include>>
+(depositar) ..> (registar movimento) : <<include>>
+(sacar) ..> (encerrar conta) : <<extend>>
+
+@enduml
