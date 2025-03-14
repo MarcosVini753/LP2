@@ -1,0 +1,40 @@
+@startuml
+class Agencia{
+    - numero : int
+    - nome : string
+    - contas : []
+}
+class Conta {
+    - numero : int
+    - saldo : double = 0
+    - titular : Cliente
+    - limite : double
+    + sacar(valor)
+    + depositar(valor)
+    + ver_saldo() : double
+    + transferir(valor, Conta)
+}
+class Cliente {
+    - nome : string
+    - cpf : string
+}
+class Emprestimo {
+    - valor : double
+    - parcelas : double
+    - valor_parcela : double
+    - parcelas_restantes : double
+    - conta : Conta
+}
+class Historico {
+    - transações : []
+}
+
+Cliente "1..1" -- "0..1"Conta : possui
+
+Conta "1..1" -- "1..1" Historico : compõe
+
+Conta  "1..1" -- "0..*" Emprestimo : associa
+
+Conta "0..*" -- "1..1" Agencia : associa
+
+@enduml
